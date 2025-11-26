@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICO Park - Multiplayer Platformer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer" class="game-container">
+        <canvas id="gameCanvas" width="1200" height="600"></canvas>
+        
+        <div id="uiContainer" class="ui-container">
+            <div id="joinScreen" class="screen active">
+                <div class="screen-content">
+                    <h1>PICO Park</h1>
+                    <p>Cooperative Puzzle Platformer</p>
+                    
+                    <div class="form-group">
+                        <label for="roomInput">Room ID:</label>
+                        <input type="text" id="roomInput" placeholder="Enter room ID" value="room1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maxPlayersInput">Max Players:</label>
+                        <select id="maxPlayersInput">
+                            <option value="2">2 Players</option>
+                            <option value="3">3 Players</option>
+                            <option value="4">4 Players</option>
+                            <option value="5">5 Players</option>
+                            <option value="6">6 Players</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Your Character:</label>
+                        <div id="characterGrid" class="character-grid">
+                            <!-- Characters will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <button id="joinBtn" class="btn-primary">Join Game</button>
+                </div>
+            </div>
+
+            <div id="gameScreen" class="screen">
+                <div id="waitingScreen" class="overlay-screen hidden">
+                    <div class="overlay-content">
+                        <h2>Waiting for Players...</h2>
+                        <p id="waitingText">Connected: 1/4</p>
+                    </div>
+                </div>
+
+                <div id="levelCompleteScreen" class="overlay-screen hidden">
+                    <div class="overlay-content">
+                        <h2>Level Complete!</h2>
+                        <p>Get ready for the next level...</p>
+                    </div>
+                </div>
+
+                <div id="disconnectScreen" class="overlay-screen hidden">
+                    <div class="overlay-content">
+                        <h2>Player Disconnected</h2>
+                        <p>Waiting for player to reconnect...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-header">
+                <div class="player-info">
+                    <span id="playerLabel"></span>
+                </div>
+                <div class="level-info">
+                    <span id="levelLabel">Level 1</span>
+                </div>
+                <div class="player-count">
+                    <span id="playerCountLabel">Players: 0/4</span>
+                </div>
+            </div>
+
+            <div id="controlsInfo" class="controls-info">
+                <p>
+                    <strong>P1:</strong> <span class="key">A</span><span class="key">D</span> | <span class="key">W</span> Jump | 
+                    <strong>P2:</strong> <span class="key">←</span><span class="key">→</span> | <span class="key">↑</span> Jump | 
+                    <strong>P3:</strong> <span class="key">Q</span><span class="key">E</span> | <span class="key">T</span> Jump |
+                    <strong>R:</strong> Restart Level
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
